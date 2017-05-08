@@ -16,11 +16,11 @@ else
     echo "Usage volume [decrease | increase | toggle-mute]\n"
 fi
 
-ID=$(cat /home/shaheen/.config/i3/.dunst_volume)
+ID=$(cat ~/.config/i3/.dunst_volume)
 if [ $ID > 0 ]
 then
-    dunstify -t 1 -p -r $ID "Volume: $TEXT" > /home/shaheen/.config/i3/.dunst_volume
+    dunstify -t 1 -p -r $ID "Volume: $TEXT" > ~/.config/i3/.dunst_volume
 else
-    dunstify -t 1 -p "Volume: $TEXT" > /home/shaheen/.config/i3/.dunst_volume
+    dunstify -t 1 -p "Volume: $TEXT" > ~/.config/i3/.dunst_volume
 fi
 
