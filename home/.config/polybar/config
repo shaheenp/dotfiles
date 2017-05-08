@@ -1,0 +1,282 @@
+[colors]
+background = #202020
+background-alt = #444
+foreground = #d5c4a1
+foreground-alt = #555
+red = #e60053
+yellow = #c7ae95
+green = #55aa55
+
+[bar/main]
+monitor = eDP-1
+width = 100%
+height = 28
+fixed-center = true
+
+locale = en_US.UTF-8
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+underline-size = 2
+
+font-0 = SFMono:size=12;2
+font-1 = "Wuncon Siji:size=12;2"
+font-2 = FontAwesome:size=12;2
+font-3 = "Material Icons:size=12;2"
+
+modules-left = i3 xwindow
+modules-center = spotify
+modules-right = weather filesystem memory cpu temperature volume battery date powermenu
+
+tray-position = right
+tray-padding = 2
+
+; config for "floating" bar
+;width = 2540
+;offset-x = 10
+;offset-y = 10
+;wm-restack = i3
+;override-redirect = true
+
+[module/separator]
+type = custom/text
+content = |
+content-foreground = ${colors.foreground-alt}
+
+[module/i3]
+
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+; Only show workspaces on the same output as the bar
+pin-workspaces = true
+
+label-mode = %mode%
+label-mode-padding = 4
+label-mode-foreground = ${colors.foreground}
+label-mode-background = ${colors.background}
+
+; focused = Active workspace on focused monitor
+label-focused = %index%
+label-focused-background = ${colors.background-alt}
+label-focused-underline = ${colors.foreground}
+label-focused-padding = 1
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %index%
+label-unfocused-padding = 1
+
+; visible = Active workspace on unfocused monitor
+label-visible = %index%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %index%
+label-urgent-underline = ${colors.red}
+label-urgent-padding = 1
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:60..%
+label-padding = 2
+
+[module/spotify]
+type = custom/script
+exec = ~/.config/polybar/spotify.sh
+interval = 5
+label-maxlen = 60
+label-ellipsis = true
+format-padding = 2
+
+[module/mpd]
+type = internal/mpd
+format-online = <label-song>
+
+label-song-maxlen = 60
+label-song-ellipsis = true
+
+[module/weather]
+type = custom/script
+interval = 60
+exec = ~/.config/polybar/weather
+format = <label>
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+format-padding = 1
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+format-mounted-prefix = " "
+format-mounted-foreground = ${colors.foreground-alt}
+label-mounted = %percentage_used%%
+label-mounted-foreground = ${colors.foreground}
+format-mounted-padding = 1
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+label = %percentage_used%%
+label-foreground = ${colors.foreground}
+format-padding = 1
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+label = %percentage%%
+label-foreground = ${colors.foreground}
+format-padding = 1
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <ramp> <label>
+format-warn = <ramp> <label-warn>
+format-padding = 1
+
+label = %temperature%
+label-warn = %temperature%
+label-warn-foreground = ${colors.red}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.foreground-alt}
+
+[module/volume]
+type = internal/volume
+
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage%%
+label-volume-foreground = ${root.foreground}
+format-volume-padding = 1
+
+format-muted-prefix = " "
+format-muted-foreground = ${colors.foreground-alt}
+label-muted = muted
+label-muted-foreground = ${colors.foreground}
+format-muted-padding = 1
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-foreground = ${colors.foreground-alt}
+
+[module/wlan]
+type = internal/network
+interface = wlp3s0
+interval = 3
+
+format-connected = <ramp-signal> <label-connected>
+label-connected = %essid%
+format-connected-padding = 1
+
+format-disconnected =
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-foreground = ${colors.foreground-alt}
+
+[module/eth]
+type = internal/network
+interface = ens9
+interval = 3
+
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = %local_ip%
+format-connected-padding = 1
+
+format-disconnected =
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = ADP1
+full-at = 96
+
+format-charging = <animation-charging> <label-charging>
+
+format-discharging = <ramp-capacity> <label-discharging>
+
+format-full = <label-full>
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.green}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-0-foreground = ${colors.red}
+ramp-capacity-1-foreground = ${colors.yellow}
+ramp-capacity-2-foreground = ${colors.foreground-alt}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-foreground = ${colors.green}
+animation-charging-framerate = 750
+
+format-full-padding = 1
+format-charging-padding = 1
+format-discharging-padding = 1
+
+[module/date]
+type = internal/date
+interval = 5
+
+date = %a %b %d
+
+time = %l:%M %p
+
+label = %date% %time%
+label-padding = 1
+
+[module/powermenu]
+type = custom/menu
+
+format-spacing = 1
+
+label-open = 
+label-open-foreground = ${colors.foreground-alt}
+label-close =  cancel
+label-close-foreground = ${colors.red}
+label-separator = |
+label-separator-foreground = ${colors.foreground-alt}
+
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = reboot
+
+menu-2-0 = power off
+menu-2-0-exec = poweroff
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+
+format-padding = 1
+
+[settings]
+screenchange-reload = true
+
+; vim:ft=dosini

@@ -1,0 +1,22 @@
+#!/bin/python
+
+import urllib.request, json, time, socket
+
+zip_code = ""
+api_key = ""
+units = "Imperial"
+unit_key = "F"
+
+try:
+    host = socket.gethostbyname("www.google.com")
+    s = socket.create_connection((host, 80), 2)
+except:
+    time.sleep(10)
+
+weather = eval(str(urllib.request.urlopen("http://api.openweathermap.org/data/2.5/weather?zip={}&APPID={}&units={}".format(zip_code, api_key, units)).read())[2:-1])
+
+info = weather["weather"][0]["description"].capitalize()
+temp = int(float(weather["main"]["temp"]))
+
+print("%i°%s" % (temp, unit_key))
+
