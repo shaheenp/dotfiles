@@ -100,7 +100,7 @@ exec --no-startup-id "~/.config/i3/start-gnome-keyring.sh"
 exec --no-startup-id nm-applet
 exec --no-startup-id redshift
 exec --no-startup-id dunst --config ~/.config/dunst/dunstrc
-exec --no-startup-id ~/.fehbg
+exec --no-startup-id ~/.config/i3/run_fehbg.sh
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 # adjust screen brightness
