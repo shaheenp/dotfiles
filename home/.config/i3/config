@@ -93,6 +93,9 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
+# lock screen
+bindsym $mod+$alt+l exec lock -p -f SFMono -- scrot -z
+
 # start stuff
 exec "xrandr --dpi 144"
 exec --no-startup-id "devmon -g 2>&1 > /tmp/devmon.log &"
