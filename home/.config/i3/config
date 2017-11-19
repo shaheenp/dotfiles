@@ -94,7 +94,7 @@ mode "resize" {
 }
 
 # lock screen
-bindsym $mod+$alt+l exec lock -p -f SFMono -- scrot -z
+bindsym $mod+$alt+l exec ~/.config/i3/lock.sh
 
 # start stuff
 exec "xrandr --dpi 144"
@@ -107,12 +107,12 @@ exec --no-startup-id ~/.config/i3/run_fehbg.sh
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 # adjust screen brightness
-bindsym XF86MonBrightnessUp exec light -A 6.3
-bindsym XF86MonBrightnessDown exec light -U 6.3
+bindsym XF86MonBrightnessUp exec light -bA 6.25
+bindsym XF86MonBrightnessDown exec light -bU 6.25
 
 # adjust keyboard brightness
-bindsym XF86KbdBrightnessUp exec light -kA 6.3
-bindsym XF86KbdBrightnessDown exec light -kU 6.3
+bindsym XF86KbdBrightnessUp exec light -kA 6.25
+bindsym XF86KbdBrightnessDown exec light -kU 6.25
 
 # media controls
 bindsym XF86AudioPlay exec playerctl play-pause

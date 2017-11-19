@@ -2,11 +2,11 @@
 
 if [ "$1" == "decrease" ]
 then
-    amixer -q set Master 6.3%- unmute
+    amixer -q set Master 6.25%- unmute
     TEXT=$(amixer sget Master | tail -1 | cut -d' ' -f6 | sed 's/\(\[\|\]\)//g')
 elif [ "$1" == "increase" ]
 then
-    amixer -q set Master 6.3%+ unmute
+    amixer -q set Master 6.25%+ unmute
     TEXT=$(amixer sget Master | tail -1 | cut -d' ' -f6 | sed 's/\(\[\|\]\)//g')
 elif [ "$1" == "toggle-mute" ]
 then
