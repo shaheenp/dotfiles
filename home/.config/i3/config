@@ -1,7 +1,7 @@
 # disable title bars so i3-gaps doesn't glitch
 for_window [class="^.*"] border pixel 0
 
-gaps inner 20
+gaps inner 5
 
 # Set modifier key (cmd)
 set $mod Mod4
